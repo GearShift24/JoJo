@@ -9,8 +9,9 @@
 
 using System;
 using Microsoft.Xna.Framework;
+using JoJo.View;
 
-namespace Platformer
+namespace JoJo.Model
 {
     /// <summary>
     /// A set of helpful methods for working with rectangles.

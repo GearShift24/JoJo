@@ -13,10 +13,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
 using JoJo.View;
 using JoJo.Model;
 
-namespace PlatformerGame.Controller
+namespace JoJo.Controller
 {
     /// <summary>
     /// This is the main type for your game
@@ -55,7 +56,7 @@ namespace PlatformerGame.Controller
         // or handle exceptions, both of which can add unnecessary time to level loading.
         private const int numberOfLevels = 3;
 
-        public PlatformerGame()
+        public JoJo()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

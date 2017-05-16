@@ -10,7 +10,8 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace Platformer
+
+namespace JoJo.Model
 {
     /// <summary>
     /// Represents a 2D circle.

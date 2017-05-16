@@ -10,8 +10,9 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using JoJo.View;
 
-namespace Platformer
+namespace JoJo.Model
 {
     /// <summary>
     /// Controls the collision detection and response behavior of a tile.

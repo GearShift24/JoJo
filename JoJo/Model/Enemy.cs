@@ -10,8 +10,9 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using JoJo.View;
 
-namespace Platformer
+namespace JoJo.Model
 {
     /// <summary>
     /// Facing direction along the X axis.

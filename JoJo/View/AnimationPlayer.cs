@@ -11,7 +11,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Platformer
+namespace JoJo.View
 {
     /// <summary>
     /// Controls playback of an Animation.

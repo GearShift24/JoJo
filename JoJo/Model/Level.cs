@@ -15,8 +15,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
+using JoJo.View;
 
-namespace Platformer
+namespace JoJo.Model
 {
     /// <summary>
     /// A uniform grid of tiles with collections of gems and enemies.
