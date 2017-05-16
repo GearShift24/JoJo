@@ -1,0 +1,3 @@
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/obj/x86/Debug/JoJo.Icon.ico
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/MonoGame.Framework.dll
