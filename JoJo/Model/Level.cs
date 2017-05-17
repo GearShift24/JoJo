@@ -39,6 +39,13 @@ namespace JoJo.Model
         }
         Player player;
 
+
+public Player Player2
+	{
+	get { return player2; }
+	}
+Player player2;
+
         private List<Gem> gems = new List<Gem>();
         private List<Enemy> enemies = new List<Enemy>();
 
@@ -271,6 +278,7 @@ namespace JoJo.Model
 
             start = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
             player = new Player(this, start);
+			player2 = new Player(this, start);
 
             return new Tile(null, TileCollision.Passable);
         }
@@ -376,13 +384,15 @@ namespace JoJo.Model
             GameTime gameTime, 
             KeyboardState keyboardState, 
             GamePadState gamePadState, 
+			GamePadState gamePadState2, 
             DisplayOrientation orientation)
         {
             // Pause while the player is dead or time is expired.
-            if (!Player.IsAlive || TimeRemaining == TimeSpan.Zero)
+            if (!Player.IsAlive || TimeRemaining == TimeSpan.Zero || !Player2.IsAlive)
             {
                 // Still want to perform physics on the player.
                 Player.ApplyPhysics(gameTime);
+				Player2.ApplyPhysics(gameTime);
             }
             else if (ReachedExit)
             {
@@ -396,10 +406,11 @@ namespace JoJo.Model
             {
                 timeRemaining -= gameTime.ElapsedGameTime;
                 Player.Update(gameTime, keyboardState, gamePadState, orientation);
+				Player2.Update(gameTime, keyboardState, gamePadState, orientation);
                 UpdateGems(gameTime);
 
                 // Falling off the bottom of the level kills the player.
-                if (Player.BoundingRectangle.Top >= Height * Tile.Height)
+                if (Player.BoundingRectangle.Top >= Height * Tile.Height || Player2.BoundingRectangle.Top >= Height * Tile.Height)
                     OnPlayerKilled(null);
 
                 UpdateEnemies(gameTime);
@@ -410,6 +421,13 @@ namespace JoJo.Model
                 if (Player.IsAlive &&
                     Player.IsOnGround &&
                     Player.BoundingRectangle.Contains(exit))
+                {
+                    OnExitReached();
+                }
+
+				 if (Player2.IsAlive &&
+                    Player2.IsOnGround &&
+                    Player2.BoundingRectangle.Contains(exit))
                 {
                     OnExitReached();
                 }
@@ -436,6 +454,12 @@ namespace JoJo.Model
                     gems.RemoveAt(i--);
                     OnGemCollected(gem, Player);
                 }
+
+				if (gem.BoundingCircle.Intersects(Player2.BoundingRectangle))
+                {
+                    gems.RemoveAt(i--);
+                    OnGemCollected(gem, Player2);
+                }
             }
         }
 
@@ -450,6 +474,11 @@ namespace JoJo.Model
 
                 // Touching an enemy instantly kills the player
                 if (enemy.BoundingRectangle.Intersects(Player.BoundingRectangle))
+                {
+                    OnPlayerKilled(enemy);
+                }
+
+				 if (enemy.BoundingRectangle.Intersects(Player2.BoundingRectangle))
                 {
                     OnPlayerKilled(enemy);
                 }
@@ -468,6 +497,8 @@ namespace JoJo.Model
             gem.OnCollected(collectedBy);
         }
 
+
+
         /// <summary>
         /// Called when the player is killed.
         /// </summary>
@@ -478,6 +509,7 @@ namespace JoJo.Model
         private void OnPlayerKilled(Enemy killedBy)
         {
             Player.OnKilled(killedBy);
+			Player2.OnKilled(killedBy);
         }
 
         /// <summary>
@@ -486,6 +518,7 @@ namespace JoJo.Model
         private void OnExitReached()
         {
             Player.OnReachedExit();
+			 Player2.OnReachedExit();
             exitReachedSound.Play();
             reachedExit = true;
         }
@@ -496,6 +529,7 @@ namespace JoJo.Model
         public void StartNewLife()
         {
             Player.Reset(start);
+			 Player2.Reset(start);
         }
 
         #endregion
@@ -516,6 +550,7 @@ namespace JoJo.Model
                 gem.Draw(gameTime, spriteBatch);
 
             Player.Draw(gameTime, spriteBatch);
+			 Player2.Draw(gameTime, spriteBatch);
 
             foreach (Enemy enemy in enemies)
                 enemy.Draw(gameTime, spriteBatch);

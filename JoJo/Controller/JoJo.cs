@@ -46,6 +46,7 @@ namespace JoJo.Controller
         // We store our input states so that we only poll once per frame, 
         // then we use the same input state wherever needed
         private GamePadState gamePadState;
+	private GamePadState gamePadState2;
         private KeyboardState keyboardState;
        
         
@@ -111,7 +112,8 @@ namespace JoJo.Controller
             HandleInput();
 
             // update our level, passing down the GameTime along with all of our input states
-            level.Update(gameTime, keyboardState, gamePadState, Window.CurrentOrientation);
+			level.Update(gameTime, keyboardState, gamePadState, gamePadState2, Window.CurrentOrientation);
+		
 
             base.Update(gameTime);
         }
@@ -121,6 +123,7 @@ namespace JoJo.Controller
             // get all of our input states
             keyboardState = Keyboard.GetState();
             gamePadState = GamePad.GetState(PlayerIndex.One);
+			gamePadState2 = GamePad.GetState(PlayerIndex.Two);
             
             // Exit the game when back is pressed.
             if (gamePadState.Buttons.Back == ButtonState.Pressed)
