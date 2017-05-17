@@ -121,27 +121,14 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/Layer2_0.png
 
-#begin Fonts/Hud.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/Hud.spritefont
-
 #begin Levels/0.txt
-/importer:
-/processor:
-/build:Levels/0.txt
+/copy:Levels/0.txt
 
 #begin Levels/1.txt
-/importer:
-/processor:
-/build:Levels/1.txt
+/copy:Levels/1.txt
 
 #begin Levels/2.txt
-/importer:
-/processor:
-/build:Levels/2.txt
+/copy:Levels/2.txt
 
 #begin Overlays/you_died.png
 /importer:TextureImporter
@@ -187,43 +174,43 @@
 
 #begin Sounds/ExitReached.wma
 /importer:WmaImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/ExitReached.wma
 
 #begin Sounds/GemCollected.wma
 /importer:WmaImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/GemCollected.wma
 
 #begin Sounds/MonsterKilled.wma
 /importer:WmaImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/MonsterKilled.wma
 
 #begin Sounds/PlayerFall.wma
 /importer:WmaImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/PlayerFall.wma
 
 #begin Sounds/PlayerJump.wma
 /importer:WmaImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/PlayerJump.wma
 
 #begin Sounds/PlayerKilled.wma
 /importer:WmaImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/PlayerKilled.wma
 
 #begin Sounds/Powerup.wma
 /importer:WmaImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/Powerup.wma
 
@@ -526,4 +513,11 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/Player/Run.png
+
+#begin Fonts/Hud.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Hud.spritefont
 
