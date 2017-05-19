@@ -219,24 +219,20 @@ namespace JoJo.Model
 
             // If any digital horizontal movement input is found, override the analog movement.
             if (gamePadState.IsButtonDown(Buttons.DPadLeft) ||
-                keyboardState.IsKeyDown(Keys.Left) ||
-                keyboardState.IsKeyDown(Keys.A))
+                keyboardState.IsKeyDown(Keys.Left))
             {
                 movement = -1.0f;
             }
             else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
-                     keyboardState.IsKeyDown(Keys.Right) ||
-                     keyboardState.IsKeyDown(Keys.D))
+                     keyboardState.IsKeyDown(Keys.Right))
             {
                 movement = 1.0f;
             }
 
             // Check if the player wants to jump.
             isJumping =
-                gamePadState.IsButtonDown(JumpButton) ||
-                keyboardState.IsKeyDown(Keys.Space) ||
-                keyboardState.IsKeyDown(Keys.Up) ||
-                keyboardState.IsKeyDown(Keys.W);
+                gamePadState.IsButtonDown(JumpButton)  ||
+                keyboardState.IsKeyDown(Keys.Up) ;
         }
 
         /// <summary>

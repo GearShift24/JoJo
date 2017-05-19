@@ -49,6 +49,7 @@
     <Compile Include="Model\Circle.cs" />
     <Compile Include="Model\Gem.cs" />
     <Compile Include="Model\RectangleExtensions.cs" />
+    <Compile Include="Model\Player2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />

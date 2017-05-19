@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Audio;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
 using JoJo.View;
+using JoJo.Model;
 
 namespace JoJo.Model
 {
@@ -40,11 +41,11 @@ namespace JoJo.Model
         Player player;
 
 
-public Player Player2
+public Player2 Player2
 	{
 	get { return player2; }
 	}
-Player player2;
+Player2 player2;
 
         private List<Gem> gems = new List<Gem>();
         private List<Enemy> enemies = new List<Enemy>();
@@ -278,7 +279,7 @@ Player player2;
 
             start = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
             player = new Player(this, start);
-			player2 = new Player(this, start);
+			player2 = new Player2(this, start);
 
             return new Tile(null, TileCollision.Passable);
         }
@@ -406,7 +407,7 @@ Player player2;
             {
                 timeRemaining -= gameTime.ElapsedGameTime;
                 Player.Update(gameTime, keyboardState, gamePadState, orientation);
-				Player2.Update(gameTime, keyboardState, gamePadState, orientation);
+				Player2.Update(gameTime, keyboardState, gamePadState2, orientation);
                 UpdateGems(gameTime);
 
                 // Falling off the bottom of the level kills the player.
@@ -458,7 +459,7 @@ Player player2;
 				if (gem.BoundingCircle.Intersects(Player2.BoundingRectangle))
                 {
                     gems.RemoveAt(i--);
-                    OnGemCollected(gem, Player2);
+                    OnGemCollected(gem, Player);
                 }
             }
         }
