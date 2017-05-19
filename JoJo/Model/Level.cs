@@ -119,7 +119,7 @@ namespace JoJo.Model
         /// <param name="fileStream">
         /// A stream containing the tile data.
         /// </param>
-        public Level(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
+        public Level(IServiceProvider serviceProvider, Stream fileStream, int levelIndex, GraphicsDevice graphics)
         {
 
 
