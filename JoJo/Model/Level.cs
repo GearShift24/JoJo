@@ -13,8 +13,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
-using System.IO;
+
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
+using System.IO;
+
 using JoJo.View;
 using JoJo.Model;
 
@@ -41,11 +45,11 @@ namespace JoJo.Model
         Player player;
 
 
-public Player2 Player2
-	{
-	get { return player2; }
-	}
-Player2 player2;
+        public Player2 Player2
+        {
+            get { return player2; }
+        }
+        Player2 player2;
 
         private List<Gem> gems = new List<Gem>();
         private List<Enemy> enemies = new List<Enemy>();
@@ -62,7 +66,24 @@ Player2 player2;
         {
             get { return score; }
         }
+
+
+
+        Texture2D projectileTexture;
+        List<Projectile> projectiles;
+
+        public int Player1Ammo
+        {
+            get { return player1Ammo; }
+        }
+
+        public int Player2Ammo
+        {
+            get { return player2Ammo; }
+        }
         int score;
+        int player1Ammo;
+        int player2Ammo;
 
         public bool ReachedExit
         {
@@ -100,12 +121,15 @@ Player2 player2;
         /// </param>
         public Level(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
         {
+
+
             // Create a new content manager to load content used just by this level.
             content = new ContentManager(serviceProvider, "Content");
 
             timeRemaining = TimeSpan.FromMinutes(2.0);
 
             LoadTiles(fileStream);
+            projectiles = new List<Projectile>();
 
             // Load background layer textures. For now, all levels must
             // use the same backgrounds and only use the left-most part of them.
@@ -131,6 +155,9 @@ Player2 player2;
         /// </param>
         private void LoadTiles(Stream fileStream)
         {
+
+            projectileTexture = Content.Load<Texture2D>("Sprites/Gem");
+            UpdateProjectiles();
             // Load the level and ensure all of the lines are the same length.
             int width;
             List<string> lines = new List<string>();
@@ -252,6 +279,34 @@ Player2 player2;
         }
 
 
+
+        private void UpdateProjectiles()
+        {
+            // Update the Projectiles
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                projectiles[i].Update();
+
+                if (projectiles[i].Active == false)
+                {
+                    projectiles.RemoveAt(i);
+                }
+
+            }
+        }
+
+
+        private void AddProjectile(Vector2 position)
+        {
+            Projectile projectile = new Projectile();
+            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position);
+            projectiles.Add(projectile);
+        }
+
+
+
+
+
         /// <summary>
         /// Loads a tile with a random appearance.
         /// </summary>
@@ -279,7 +334,7 @@ Player2 player2;
 
             start = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
             player = new Player(this, start);
-			player2 = new Player2(this, start);
+            player2 = new Player2(this, start);
 
             return new Tile(null, TileCollision.Passable);
         }
@@ -382,10 +437,10 @@ Player2 player2;
         /// and handles the time limit with scoring.
         /// </summary>
         public void Update(
-            GameTime gameTime, 
-            KeyboardState keyboardState, 
-            GamePadState gamePadState, 
-			GamePadState gamePadState2, 
+            GameTime gameTime,
+            KeyboardState keyboardState,
+            GamePadState gamePadState,
+            GamePadState gamePadState2,
             DisplayOrientation orientation)
         {
             // Pause while the player is dead or time is expired.
@@ -393,7 +448,7 @@ Player2 player2;
             {
                 // Still want to perform physics on the player.
                 Player.ApplyPhysics(gameTime);
-				Player2.ApplyPhysics(gameTime);
+                Player2.ApplyPhysics(gameTime);
             }
             else if (ReachedExit)
             {
@@ -401,13 +456,13 @@ Player2 player2;
                 int seconds = (int)Math.Round(gameTime.ElapsedGameTime.TotalSeconds * 100.0f);
                 seconds = Math.Min(seconds, (int)Math.Ceiling(TimeRemaining.TotalSeconds));
                 timeRemaining -= TimeSpan.FromSeconds(seconds);
-                score += seconds * PointsPerSecond;
+                //score += seconds * PointsPerSecond;
             }
             else
             {
                 timeRemaining -= gameTime.ElapsedGameTime;
                 Player.Update(gameTime, keyboardState, gamePadState, orientation);
-				Player2.Update(gameTime, keyboardState, gamePadState2, orientation);
+                Player2.Update(gameTime, keyboardState, gamePadState2, orientation);
                 UpdateGems(gameTime);
 
                 // Falling off the bottom of the level kills the player.
@@ -426,9 +481,9 @@ Player2 player2;
                     OnExitReached();
                 }
 
-				 if (Player2.IsAlive &&
-                    Player2.IsOnGround &&
-                    Player2.BoundingRectangle.Contains(exit))
+                if (Player2.IsAlive &&
+                   Player2.IsOnGround &&
+                   Player2.BoundingRectangle.Contains(exit))
                 {
                     OnExitReached();
                 }
@@ -437,6 +492,20 @@ Player2 player2;
             // Clamp the time remaining at zero.
             if (timeRemaining < TimeSpan.Zero)
                 timeRemaining = TimeSpan.Zero;
+
+
+
+            if (keyboardState.IsKeyDown(Keys.Left) && player1Ammo != 0)
+            {
+                AddProjectile(player.Position + new Vector2(player.Width /2,0));
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Left) && player2Ammo != 0)
+            {
+                AddProjectile(player2.Position + new Vector2(player2.Width/2,0));
+            }
+
+
         }
 
         /// <summary>
@@ -456,10 +525,10 @@ Player2 player2;
                     OnGemCollected(gem, Player);
                 }
 
-				if (gem.BoundingCircle.Intersects(Player2.BoundingRectangle))
+                if (gem.BoundingCircle.Intersects(Player2.BoundingRectangle))
                 {
                     gems.RemoveAt(i--);
-                    OnGemCollected(gem, Player);
+                    OnGemCollected2(gem, Player);
                 }
             }
         }
@@ -479,7 +548,7 @@ Player2 player2;
                     OnPlayerKilled(enemy);
                 }
 
-				 if (enemy.BoundingRectangle.Intersects(Player2.BoundingRectangle))
+                if (enemy.BoundingRectangle.Intersects(Player2.BoundingRectangle))
                 {
                     OnPlayerKilled(enemy);
                 }
@@ -493,11 +562,45 @@ Player2 player2;
         /// <param name="collectedBy">The player who collected this gem.</param>
         private void OnGemCollected(Gem gem, Player collectedBy)
         {
+
+
             score += Gem.PointValue;
+
+
+            if (collectedBy == player)
+            {
+                player1Ammo++;
+            }
+
+            else
+            {
+                player2Ammo++;
+            }
+
+
 
             gem.OnCollected(collectedBy);
         }
 
+        private void OnGemCollected2(Gem gem, Player collectedBy)
+        {
+
+
+            score += Gem.PointValue;
+
+
+            if (collectedBy == player)
+            {
+                player2Ammo++;
+            }
+
+            else
+            {
+                player1Ammo++;
+            }
+
+            gem.OnCollected(collectedBy);
+        }
 
 
         /// <summary>
@@ -510,9 +613,90 @@ Player2 player2;
         private void OnPlayerKilled(Enemy killedBy)
         {
             Player.OnKilled(killedBy);
-			Player2.OnKilled(killedBy);
+            Player2.OnKilled(killedBy);
         }
 
+
+
+
+        private void UpdateCollision()
+        {
+            // Use the Rectangle's built-in intersect function to 
+            // determine if two objects are overlapping
+            Rectangle rectangle1;
+            Rectangle rectangle2;
+            Rectangle player1ProjectileBox;
+            Rectangle player2ProjectileBox;
+
+            // Only create the rectangle once for the player
+            rectangle1 = new Rectangle((int)player.Position.X,
+            (int)player.Position.Y,
+            player.Width,
+            player.Height);
+
+            rectangle2 = new Rectangle((int)player2.Position.X,
+           (int)player2.Position.Y,
+           player.Width,
+           player.Height);
+
+            // Projectile vs Enemy Collision
+            for (int i = 0; i < projectiles.Count; i++)
+            {
+                
+                {
+                    // Create the rectangles we need to determine if we collided with each other
+                    player2ProjectileBox = new Rectangle((int)projectiles[i].Position.X -
+                    projectiles[i].Width / 2, (int)projectiles[i].Position.Y -
+                    projectiles[i].Height / 2, projectiles[i].Width, projectiles[i].Height);
+
+					
+                    // Determine if the two objects collided with each other
+                    if (rectangle1.Intersects(player2ProjectileBox))
+                    {
+                        
+                        player.damageAndKilled();
+                        projectiles[i].Active = false;
+                    }
+                }
+            }
+
+
+			for (int i = 0; i < projectiles.Count; i++)
+			{
+
+				{
+					// Create the rectangles we need to determine if we collided with each other
+					player1ProjectileBox = new Rectangle((int)projectiles[i].Position.X -
+					projectiles[i].Width / 2, (int)projectiles[i].Position.Y -
+					projectiles[i].Height / 2, projectiles[i].Width, projectiles[i].Height);
+
+
+					// Determine if the two objects collided with each other
+					if (rectangle2.Intersects(player1ProjectileBox))
+					{
+						
+                        player2.damageAndKilled();
+						projectiles[i].Active = false;
+					}
+				}
+			}
+        }
+
+
+
+        private void UpdateProjectile(GameTime gameTime)
+        {
+
+            for (int index = projectiles.Count - 1; index >= 0; index--)
+            {
+                if(!projectiles[index].Active)
+                {
+                    projectiles.RemoveAt(index);
+                }
+            }
+
+
+        }
         /// <summary>
         /// Called when the player reaches the level's exit.
         /// </summary>
@@ -530,7 +714,9 @@ Player2 player2;
         public void StartNewLife()
         {
             Player.Reset(start);
+            Player.setHealth(3);
 			 Player2.Reset(start);
+            Player2.setHealth(3);
         }
 
         #endregion
@@ -558,6 +744,11 @@ Player2 player2;
 
             for (int i = EntityLayer + 1; i < layers.Length; ++i)
                 spriteBatch.Draw(layers[i], Vector2.Zero, Color.White);
+
+			for (int i = 0; i < projectiles.Count; i++)
+			{
+				projectiles[i].Draw(spriteBatch);
+			}
         }
 
         /// <summary>

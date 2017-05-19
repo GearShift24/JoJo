@@ -35,6 +35,8 @@ namespace JoJo.Model
 		private SoundEffect jumpSound;
 		private SoundEffect fallSound;
 
+        int health2;
+
 		public Level Level
 		{
 			get { return level; }
@@ -45,6 +47,17 @@ namespace JoJo.Model
 		{
 			get { return isAlive; }
 		}
+
+		public int Health2
+		{
+			get { return health2; }
+		}
+
+		public void setHealth(int givenHealth2)
+		{
+			health2 = givenHealth2;
+		}
+
 		bool isAlive;
 
 		// Physics state
@@ -81,6 +94,15 @@ namespace JoJo.Model
 		private const float MoveStickScale = 1.0f;
 
 		private const Buttons JumpButton = Buttons.A;
+
+		public int Width
+		{
+			get { return idleAnimation.FrameWidth; }
+		}
+		public int Height
+		{
+			get { return idleAnimation.FrameHeight; }
+		}
 
 		/// <summary>
 		/// Gets whether or not the player's feet are on the ground.
@@ -418,6 +440,29 @@ namespace JoJo.Model
 
 			sprite.PlayAnimation(dieAnimation);
 		}
+
+
+
+
+		public void damageAndKilled()
+		{
+
+			
+
+
+
+                health2--;
+
+
+
+			if (health2 == 0)
+			{
+				isAlive = false;
+			}
+
+		}
+
+
 
 		/// <summary>
 		/// Called when this player reaches the level's exit.

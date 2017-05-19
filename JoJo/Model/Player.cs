@@ -29,6 +29,7 @@ namespace JoJo.Model
         private Animation dieAnimation;
         private SpriteEffects flip = SpriteEffects.None;
         private AnimationPlayer sprite;
+		int health = 3;
 
         // Sounds
         private SoundEffect killedSound;
@@ -40,6 +41,16 @@ namespace JoJo.Model
             get { return level; }
         }
         Level level;
+
+		public int Health
+		{
+			get { return health; }
+		}
+
+		public void setHealth(int givenHealth)
+		{
+            health = givenHealth;
+		}
 
         public bool IsAlive
         {
@@ -81,6 +92,16 @@ namespace JoJo.Model
         private const float MoveStickScale = 1.0f;
         
         private const Buttons JumpButton = Buttons.A;
+
+
+        public int Width
+        {
+            get{return idleAnimation.FrameWidth;}
+        }
+		public int Height
+		{
+			get { return idleAnimation.FrameHeight; }
+		}
 
         /// <summary>
         /// Gets whether or not the player's feet are on the ground.
@@ -405,6 +426,23 @@ namespace JoJo.Model
         /// The enemy who killed the player. This parameter is null if the player was
         /// not killed by an enemy (fell into a hole).
         /// </param>
+        /// 
+
+        public void damageAndKilled()
+        {
+            
+			
+				health--;
+			
+
+
+            if (health == 0)
+            {
+                isAlive = false;
+            }
+
+        }
+
         public void OnKilled(Enemy killedBy)
         {
             isAlive = false;
