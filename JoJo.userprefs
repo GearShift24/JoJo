@@ -1,11 +1,7 @@
 ﻿<Properties StartupConfiguration="{34BE5076-CA94-4116-8F0A-87CB2B530845}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="JoJo/Model/Gem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JoJo/Model/Level.cs">
     <Files>
-      <File FileName="JoJo/Controller/JoJo.cs" Line="185" Column="65" />
-      <File FileName="JoJo/Model/Level.cs" Line="125" Column="13" />
-      <File FileName="JoJo/Model/Player.cs" Line="47" Column="4" />
-      <File FileName="JoJo/Model/Player2.cs" Line="105" Column="4" />
-      <File FileName="JoJo/Model/Gem.cs" Line="69" Column="27" />
+      <File FileName="JoJo/Model/Level.cs" Line="315" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

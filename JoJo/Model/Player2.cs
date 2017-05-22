@@ -29,6 +29,7 @@ namespace JoJo.Model
 		private Animation dieAnimation;
 		private SpriteEffects flip = SpriteEffects.None;
 		private AnimationPlayer sprite;
+		private bool isFacingLeft;
 
 		// Sounds
 		private SoundEffect killedSound;
@@ -46,6 +47,11 @@ namespace JoJo.Model
 		public bool IsAlive
 		{
 			get { return isAlive; }
+		}
+
+		public bool IsFacingLeft
+		{
+			get { return isFacingLeft; }
 		}
 
 		public int Health2
@@ -112,6 +118,8 @@ namespace JoJo.Model
 			get { return isOnGround; }
 		}
 		bool isOnGround;
+
+
 
 		/// <summary>
 		/// Current user movement input.
@@ -245,12 +253,14 @@ namespace JoJo.Model
 				keyboardState.IsKeyDown(Keys.A))
 			{
 				movement = -1.0f;
+                isFacingLeft = true;
 			}
 			else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
 					
 					 keyboardState.IsKeyDown(Keys.D))
 			{
 				movement = 1.0f;
+                isFacingLeft = false;
 			}
 
 			// Check if the player wants to jump.

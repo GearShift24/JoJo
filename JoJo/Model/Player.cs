@@ -31,6 +31,8 @@ namespace JoJo.Model
         private AnimationPlayer sprite;
 		int health = 3;
 
+        private bool isFacingLeft;
+
         // Sounds
         private SoundEffect killedSound;
         private SoundEffect jumpSound;
@@ -52,11 +54,22 @@ namespace JoJo.Model
             health = givenHealth;
 		}
 
+		public bool IsFacingLeft
+		{
+			get { return isFacingLeft; }
+		}
+
+        public bool getIsFacingLeft()
+        {
+            return isFacingLeft;
+        }
+
+		bool isAlive;
         public bool IsAlive
         {
             get { return isAlive; }
         }
-        bool isAlive;
+      
 
         // Physics state
         public Vector2 Position
@@ -243,17 +256,24 @@ namespace JoJo.Model
                 keyboardState.IsKeyDown(Keys.Left))
             {
                 movement = -1.0f;
+                isFacingLeft = true;
             }
             else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
                      keyboardState.IsKeyDown(Keys.Right))
             {
                 movement = 1.0f;
+                isFacingLeft = false;
             }
 
             // Check if the player wants to jump.
             isJumping =
                 gamePadState.IsButtonDown(JumpButton)  ||
                 keyboardState.IsKeyDown(Keys.Up) ;
+
+
+             
+           
+
         }
 
         /// <summary>

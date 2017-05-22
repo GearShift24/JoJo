@@ -3,6 +3,8 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using JoJo.Controller;
+using JoJo.Model;
 
 namespace JoJo.Model
 {
@@ -12,6 +14,7 @@ namespace JoJo.Model
 		{
 		}
 
+        public bool isFacingLeft;
 
 		// Image representing the Projectile
 		public Texture2D Texture;
@@ -51,18 +54,30 @@ namespace JoJo.Model
 			this.viewport = viewport;
 
 
+
+
+
 			Active = true;
 
 			Damage = 5;
 
+
+
 			projectileMoveSpeed = 1f;
 		}
-		public void Update()
+		public void Update(bool isFacingLeft)
 		{
 			// Projectiles always move to the right
-			Position.X += projectileMoveSpeed;
+			
 
-
+            if(isFacingLeft)
+            {
+                Position.X += projectileMoveSpeed;
+            }
+            else
+            {
+                Position.X -= projectileMoveSpeed;
+            }
 
 
 

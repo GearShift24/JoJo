@@ -19,6 +19,7 @@ using Microsoft.Xna.Framework.Media;
 
 using System.IO;
 
+using JoJo.Controller;
 using JoJo.View;
 using JoJo.Model;
 
@@ -31,6 +32,9 @@ namespace JoJo.Model
     /// </summary>
     class Level : IDisposable
     {
+
+        private GraphicsDevice graphics;
+
         // Physical structure of the level.
         private Tile[,] tiles;
         private Texture2D[] layers;
@@ -43,6 +47,9 @@ namespace JoJo.Model
             get { return player; }
         }
         Player player;
+
+		Texture2D projectileTexture;
+		List<Projectile> projectiles;
 
 
         public Player2 Player2
@@ -69,8 +76,8 @@ namespace JoJo.Model
 
 
 
-        Texture2D projectileTexture;
-        List<Projectile> projectiles;
+
+      
 
         public int Player1Ammo
         {
@@ -108,17 +115,21 @@ namespace JoJo.Model
 
         private SoundEffect exitReachedSound;
 
-        #region Loading
+		#region Loading
 
-        /// <summary>
-        /// Constructs a new level.
-        /// </summary>
-        /// <param name="serviceProvider">
-        /// The service provider that will be used to construct a ContentManager.
-        /// </param>
-        /// <param name="fileStream">
-        /// A stream containing the tile data.
-        /// </param>
+		/// <summary>
+		/// Constructs a new level.
+		/// </summary>
+		/// <param name="serviceProvider">
+		/// The service provider that will be used to construct a ContentManager.
+		/// </param>
+		/// <param name="fileStream">
+		/// A stream containing the tile data.
+		/// </param>
+		/// 
+		
+
+
         public Level(IServiceProvider serviceProvider, Stream fileStream, int levelIndex, GraphicsDevice graphics)
         {
 
@@ -130,6 +141,10 @@ namespace JoJo.Model
 
             LoadTiles(fileStream);
             projectiles = new List<Projectile>();
+
+
+            this.graphics = graphics;
+			
 
             // Load background layer textures. For now, all levels must
             // use the same backgrounds and only use the left-most part of them.
@@ -144,6 +159,8 @@ namespace JoJo.Model
             // Load sounds.
             exitReachedSound = Content.Load<SoundEffect>("Sounds/ExitReached");
         }
+
+
 
         /// <summary>
         /// Iterates over every tile in the structure file and loads its
@@ -280,31 +297,37 @@ namespace JoJo.Model
 
 
 
-        private void UpdateProjectiles()
-        {
-            // Update the Projectiles
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-            {
-                projectiles[i].Update();
-
-                if (projectiles[i].Active == false)
-                {
-                    projectiles.RemoveAt(i);
-                }
-
-            }
-        }
+     
 
 
         private void AddProjectile(Vector2 position)
         {
             Projectile projectile = new Projectile();
-            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position);
+            projectile.Initialize(graphics.Viewport, projectileTexture, position);
             projectiles.Add(projectile);
         }
 
 
+		private void UpdateProjectiles()
+		{
+            Projectile projectile = new Projectile();
 
+            if(projectiles.Count < player1Ammo)
+            {
+                projectiles.Add(projectile);
+            }
+
+			// Update the Projectiles
+			for (int i = projectiles.Count - 1; i >= 0; i--)
+			{
+				projectiles[i].Update(Player.IsFacingLeft);
+
+				if (projectiles[i].Active == false)
+				{
+					projectiles.RemoveAt(i);
+				}
+			}
+		}
 
 
         /// <summary>
@@ -640,7 +663,7 @@ namespace JoJo.Model
            player.Height);
 
             // Projectile vs Enemy Collision
-            for (int i = 0; i < projectiles.Count; i++)
+            for (int i = 0; i < projectiles.Count; i--)
             {
                 
                 {
