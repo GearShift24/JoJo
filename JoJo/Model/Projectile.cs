@@ -49,7 +49,9 @@ namespace JoJo.Model
 
 		public void Initialize(Viewport viewport, Texture2D texture, Vector2 position)
 		{
-			Texture = texture;
+   
+
+			  Texture = texture;
 			Position = position;
 			this.viewport = viewport;
 
@@ -70,19 +72,21 @@ namespace JoJo.Model
 			// Projectiles always move to the right
 			
 
+
+
             if(isFacingLeft)
             {
-                Position.X += projectileMoveSpeed;
+                Position.X -= 30f;
             }
             else
             {
-                Position.X -= projectileMoveSpeed;
+                Position.X += 30f;
             }
 
 
 
 			// Deactivate the bullet if it goes out of screen
-			if (Position.X + Texture.Width / 2 > viewport.Width)
+			if (Position.X  + Texture.Width / 2 > viewport.Width)
 				Active = false;
 		}
 		public void Draw(SpriteBatch spriteBatch)

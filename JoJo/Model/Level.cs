@@ -138,9 +138,12 @@ namespace JoJo.Model
             content = new ContentManager(serviceProvider, "Content");
 
             timeRemaining = TimeSpan.FromMinutes(2.0);
+            projectiles = new List<Projectile>();
+			projectileTexture = Content.Load<Texture2D>("Sprites/Gem");
+      
 
             LoadTiles(fileStream);
-            projectiles = new List<Projectile>();
+
 
 
             this.graphics = graphics;
@@ -173,7 +176,7 @@ namespace JoJo.Model
         private void LoadTiles(Stream fileStream)
         {
 
-            projectileTexture = Content.Load<Texture2D>("Sprites/Gem");
+           
             UpdateProjectiles();
             // Load the level and ensure all of the lines are the same length.
             int width;
@@ -302,20 +305,25 @@ namespace JoJo.Model
 
         private void AddProjectile(Vector2 position)
         {
-            Projectile projectile = new Projectile();
-            projectile.Initialize(graphics.Viewport, projectileTexture, position);
-            projectiles.Add(projectile);
+			Projectile projectile = new Projectile();
+			projectile.Initialize(graphics.Viewport, projectileTexture, position);
+			
+
+			if (projectiles.Count < player1Ammo)
+			{
+				projectiles.Add(projectile);
+
+			}
+
         }
 
 
 		private void UpdateProjectiles()
 		{
-            Projectile projectile = new Projectile();
+            
 
-            if(projectiles.Count < player1Ammo)
-            {
-                projectiles.Add(projectile);
-            }
+
+          
 
 			// Update the Projectiles
 			for (int i = projectiles.Count - 1; i >= 0; i--)
@@ -491,7 +499,7 @@ namespace JoJo.Model
                 // Falling off the bottom of the level kills the player.
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height || Player2.BoundingRectangle.Top >= Height * Tile.Height)
                     OnPlayerKilled(null);
-
+                UpdateProjectiles();
                 UpdateEnemies(gameTime);
 
                 // The player has reached the exit if they are standing on the ground and
@@ -518,14 +526,20 @@ namespace JoJo.Model
 
 
 
-            if (keyboardState.IsKeyDown(Keys.Left) && player1Ammo != 0)
+            if (keyboardState.IsKeyDown(Keys.RightShift) && player1Ammo != 0)
             {
+				
                 AddProjectile(player.Position + new Vector2(player.Width /2,0));
+                UpdateProjectiles();
+				player1Ammo--;
             }
 
-            if (keyboardState.IsKeyDown(Keys.Left) && player2Ammo != 0)
+            if (keyboardState.IsKeyDown(Keys.NumPad0) && player1Ammo != 0)
             {
-                AddProjectile(player2.Position + new Vector2(player2.Width/2,0));
+                
+                AddProjectile(player.Position + new Vector2(player.Width/2,0));
+                UpdateProjectiles();
+                player1Ammo--;
             }
 
 
@@ -577,6 +591,8 @@ namespace JoJo.Model
                 }
             }
         }
+
+
 
         /// <summary>
         /// Called when a gem is collected.

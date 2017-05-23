@@ -224,8 +224,8 @@ namespace JoJo.Controller
             DrawShadowedString(hudFont, "SCORE: " + level.Score.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 1.0f), Color.Yellow);
             DrawShadowedString(hudFont, "Player 1 ammo: " + level.Player1Ammo.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 2.0f), Color.Yellow);
 			DrawShadowedString(hudFont, "Player 2 ammo: " + level.Player2Ammo.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 3.0f), Color.Yellow);
-            DrawShadowedString(hudFont, "Player 1 HP: " + player.Health.ToString() , hudLocation + new Vector2(0.0f, timeHeight * 5.0f), Color.Yellow);
-            DrawShadowedString(hudFont, "Player 2 HP: " + player2.Health2.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 6.0f), Color.Yellow);
+            //DrawShadowedString(hudFont, "Player 1 HP: " + player.Health.ToString() , hudLocation + new Vector2(0.0f, timeHeight * 5.0f), Color.Yellow);
+            //DrawShadowedString(hudFont, "Player 2 HP: " + player2.Health2.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 6.0f), Color.Yellow);
 
            
             // Determine the status overlay message to show.
