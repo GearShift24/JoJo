@@ -37,7 +37,6 @@
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/PlayerJump.ogg
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/PlayerJump.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/PlayerKilled.ogg
-/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/PlayerKilled.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/Powerup.ogg
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/Powerup.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Gem.xnb
@@ -74,3 +73,4 @@
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/obj/x86/Debug/JoJo.csproj.CoreCompileInputs.cache
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/obj/x86/Debug/JoJo.exe
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/obj/x86/Debug/JoJo.pdb
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/PlayerKilled.xnb

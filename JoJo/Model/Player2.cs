@@ -456,14 +456,7 @@ namespace JoJo.Model
 
 		public void damageAndKilled()
 		{
-
-			
-
-
-
-                health2--;
-
-
+            health2--;
 
 			if (health2 == 0)
 			{

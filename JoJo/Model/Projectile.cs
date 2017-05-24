@@ -76,11 +76,11 @@ namespace JoJo.Model
 
             if(isFacingLeft)
             {
-                Position.X -= 30f;
+                Position.X -= 20f;
             }
             else
             {
-                Position.X += 30f;
+                Position.X += 20f;
             }
 
 

@@ -50,7 +50,7 @@ namespace JoJo.Controller
         private GamePadState gamePadState;
 	private GamePadState gamePadState2;
         private KeyboardState keyboardState;
-       
+		private KeyboardState previousKeyboardState;
         
         
         // The number of levels in the Levels directory of our content. We assume that
@@ -114,7 +114,7 @@ namespace JoJo.Controller
             HandleInput();
 
             // update our level, passing down the GameTime along with all of our input states
-			level.Update(gameTime, keyboardState, gamePadState, gamePadState2, Window.CurrentOrientation);
+            level.Update(gameTime, keyboardState,previousKeyboardState, gamePadState, gamePadState2, Window.CurrentOrientation);
 		
 
             base.Update(gameTime);
@@ -124,6 +124,7 @@ namespace JoJo.Controller
         {
             // get all of our input states
             keyboardState = Keyboard.GetState();
+            previousKeyboardState = keyboardState;
             gamePadState = GamePad.GetState(PlayerIndex.One);
 			gamePadState2 = GamePad.GetState(PlayerIndex.Two);
             
@@ -139,6 +140,11 @@ namespace JoJo.Controller
             // to get the player back to playing.
             if (!wasContinuePressed && continuePressed)
             {
+
+				if (!level.Player2.IsAlive)
+				{
+					level.StartNewLife();
+				}
                 if (!level.Player.IsAlive)
                 {
                     level.StartNewLife();
@@ -150,6 +156,7 @@ namespace JoJo.Controller
                     else
                         ReloadCurrentLevel();
                 }
+
             }
 
             wasContinuePressed = continuePressed;
@@ -224,6 +231,7 @@ namespace JoJo.Controller
             DrawShadowedString(hudFont, "SCORE: " + level.Score.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 1.0f), Color.Yellow);
             DrawShadowedString(hudFont, "Player 1 ammo: " + level.Player1Ammo.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 2.0f), Color.Yellow);
 			DrawShadowedString(hudFont, "Player 2 ammo: " + level.Player2Ammo.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 3.0f), Color.Yellow);
+
             //DrawShadowedString(hudFont, "Player 1 HP: " + player.Health.ToString() , hudLocation + new Vector2(0.0f, timeHeight * 5.0f), Color.Yellow);
             //DrawShadowedString(hudFont, "Player 2 HP: " + player2.Health2.ToString(), hudLocation + new Vector2(0.0f, timeHeight * 6.0f), Color.Yellow);
 
@@ -245,6 +253,11 @@ namespace JoJo.Controller
             {
                 status = diedOverlay;
             }
+
+			else if (!level.Player2.IsAlive)
+			{
+				status = diedOverlay;
+			}
 
             if (status != null)
             {

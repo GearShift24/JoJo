@@ -32,6 +32,7 @@ namespace JoJo.Model
     /// </summary>
     class Level : IDisposable
     {
+      
 
         private GraphicsDevice graphics;
 
@@ -470,6 +471,7 @@ namespace JoJo.Model
         public void Update(
             GameTime gameTime,
             KeyboardState keyboardState,
+            KeyboardState previousKeyboardState,
             GamePadState gamePadState,
             GamePadState gamePadState2,
             DisplayOrientation orientation)
@@ -499,6 +501,7 @@ namespace JoJo.Model
                 // Falling off the bottom of the level kills the player.
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height || Player2.BoundingRectangle.Top >= Height * Tile.Height)
                     OnPlayerKilled(null);
+                UpdateCollision();
                 UpdateProjectiles();
                 UpdateEnemies(gameTime);
 
@@ -526,15 +529,24 @@ namespace JoJo.Model
 
 
 
-            if (keyboardState.IsKeyDown(Keys.RightShift) && player1Ammo != 0)
+
+
+
+            if (keyboardState.IsKeyDown(Keys.RightShift) && player1Ammo != 0 )
             {
+                if(previousKeyboardState.IsKeyDown(Keys.RightShift))
+                {
+					AddProjectile(player.Position + new Vector2(player.Width / 2, 0));
+					UpdateProjectiles();
+					player1Ammo--;
+                }
+               
+           
 				
-                AddProjectile(player.Position + new Vector2(player.Width /2,0));
-                UpdateProjectiles();
-				player1Ammo--;
+               
             }
 
-            if (keyboardState.IsKeyDown(Keys.NumPad0) && player1Ammo != 0)
+            if (keyboardState.IsKeyDown(Keys.NumPad0) && player1Ammo != 0 && previousKeyboardState.IsKeyUp(Keys.NumPad0))
             {
                 
                 AddProjectile(player.Position + new Vector2(player.Width/2,0));
@@ -591,7 +603,6 @@ namespace JoJo.Model
                 }
             }
         }
-
 
 
         /// <summary>
@@ -665,7 +676,7 @@ namespace JoJo.Model
             Rectangle rectangle1;
             Rectangle rectangle2;
             Rectangle player1ProjectileBox;
-            Rectangle player2ProjectileBox;
+          
 
             // Only create the rectangle once for the player
             rectangle1 = new Rectangle((int)player.Position.X,
@@ -678,27 +689,7 @@ namespace JoJo.Model
            player.Width,
            player.Height);
 
-            // Projectile vs Enemy Collision
-            for (int i = 0; i < projectiles.Count; i--)
-            {
-                
-                {
-                    // Create the rectangles we need to determine if we collided with each other
-                    player2ProjectileBox = new Rectangle((int)projectiles[i].Position.X -
-                    projectiles[i].Width / 2, (int)projectiles[i].Position.Y -
-                    projectiles[i].Height / 2, projectiles[i].Width, projectiles[i].Height);
-
-					
-                    // Determine if the two objects collided with each other
-                    if (rectangle1.Intersects(player2ProjectileBox))
-                    {
-                        
-                        player.damageAndKilled();
-                        projectiles[i].Active = false;
-                    }
-                }
-            }
-
+          
 
 			for (int i = 0; i < projectiles.Count; i++)
 			{
@@ -714,7 +705,7 @@ namespace JoJo.Model
 					if (rectangle2.Intersects(player1ProjectileBox))
 					{
 						
-                        player2.damageAndKilled();
+                        player.damageAndKilled();
 						projectiles[i].Active = false;
 					}
 				}

@@ -18,6 +18,9 @@ namespace JoJo.View
     /// </summary>
     struct AnimationPlayer
     {
+
+	
+
         /// <summary>
         /// Gets the animation which is currently playing.
         /// </summary>
@@ -71,6 +74,8 @@ namespace JoJo.View
         {
             if (Animation == null)
                 throw new NotSupportedException("No animation is currently playing.");
+
+          
 
             // Process passing time.
             time += (float)gameTime.ElapsedGameTime.TotalSeconds;

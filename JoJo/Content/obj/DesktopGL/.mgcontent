@@ -16,13 +16,11 @@
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Overlays/you_died.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Overlays/you_lose.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Overlays/you_win.png</File>
-    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/Music.wma</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/ExitReached.wma</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/GemCollected.wma</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/MonsterKilled.wma</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerFall.wma</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerJump.wma</File>
-    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerKilled.wma</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/Powerup.wma</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Tiles/BlockA0.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Tiles/BlockA1.png</File>
@@ -50,5 +48,7 @@
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Jump.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Run.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Fonts/Hud.spritefont</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerKilled.wma</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/Music.mp3</File>
   </SourceFiles>
 </SourceFileCollection>
