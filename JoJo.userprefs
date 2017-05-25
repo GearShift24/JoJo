@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="JoJo/Controller/JoJo.cs">
     <Files>
       <File FileName="JoJo/Model/Level.cs" Line="365" Column="35" />
-      <File FileName="JoJo/Controller/JoJo.cs" Line="272" Column="51" />
+      <File FileName="JoJo/Controller/JoJo.cs" Line="269" Column="9" />
       <File FileName="JoJo/Model/Player2.cs" Line="475" Column="45" />
       <File FileName="JoJo/Model/Player.cs" Line="460" Column="14" />
       <File FileName="JoJo/Model/Projectile.cs" Line="76" Column="13" />
