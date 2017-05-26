@@ -75,7 +75,10 @@ namespace JoJo.Model
             get { return score; }
         }
 
-
+		public int Score2
+		{
+			get { return score2; }
+		}
 
 
       
@@ -100,6 +103,7 @@ namespace JoJo.Model
             get { return player2Ammo; }
         }
         int score;
+		int score2;
         int player1Ammo;
         int player2Ammo;
 
@@ -523,6 +527,7 @@ namespace JoJo.Model
                     Player.BoundingRectangle.Contains(exit))
                 {
                     OnExitReached();
+					score += 10;
                 }
 
                 if (Player2.IsAlive &&
@@ -530,6 +535,7 @@ namespace JoJo.Model
                    Player2.BoundingRectangle.Contains(exit))
                 {
                     OnExitReached();
+					score2 += 10;
                 }
             }
 
@@ -646,17 +652,19 @@ namespace JoJo.Model
         {
 
 
-            score += Gem.PointValue;
+         
 
 
             if (collectedBy == player)
             {
                 player2Ammo++;
+				score2 += Gem.PointValue;
             }
 
             else
             {
                 player1Ammo++;
+				score += Gem.PointValue;
             }
 
             gem.OnCollected(collectedBy);
@@ -715,9 +723,10 @@ namespace JoJo.Model
 					if (rectangle2.Intersects(player1ProjectileBox))
 					{
 						
-                        player.damageAndKilled();
+                        player2.damageAndKilled();
                         player2.playerKill();
 
+                        score += 8;
 
 						projectiles[i].Active = false;
 					}

@@ -23,7 +23,7 @@ namespace JoJo.Model
         private Vector2 origin;
         private SoundEffect collectedSound;
 
-        public const int PointValue = 30;
+        public const int PointValue = 3;
         public readonly Color Color = Color.Yellow;
 
         // The gem is animated from a base position along the Y axis.
