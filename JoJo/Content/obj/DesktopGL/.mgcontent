@@ -4,14 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer1_1.png</File>
-    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer1_2.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer2_1.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer2_2.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer0_0.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer0_1.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer0_2.png</File>
-    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer1_0.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer2_0.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Overlays/you_died.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Overlays/you_lose.png</File>
@@ -46,9 +43,17 @@
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Run.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Fonts/Hud.spritefont</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/Music.mp3</File>
-    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerJump.mp3</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/ExitReached.mp3</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerKilled.mp3</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/GemCollected.mp3</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerJump.mp3</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer1_2.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer1_0.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer1_1.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Run2.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Idle2.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Jump2.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Die2.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Celebrate2.png</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -74,3 +74,8 @@
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/obj/x86/Debug/JoJo.exe
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/obj/x86/Debug/JoJo.pdb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/PlayerKilled.xnb
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Celebrate2.xnb
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Die2.xnb
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Idle2.xnb
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Jump2.xnb
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Run2.xnb

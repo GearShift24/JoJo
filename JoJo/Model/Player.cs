@@ -29,7 +29,7 @@ namespace JoJo.Model
         private Animation dieAnimation;
         private SpriteEffects flip = SpriteEffects.None;
         private AnimationPlayer sprite;
-		int health = 3;
+		int health = 1;
 
         private bool isFacingLeft;
 
@@ -461,6 +461,11 @@ namespace JoJo.Model
                 isAlive = false;
             }
 
+        }
+
+        public void playerKill()
+        {
+			sprite.PlayAnimation(dieAnimation);
         }
 
         public void OnKilled(Enemy killedBy)

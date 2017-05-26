@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Backgrounds/Layer1_2.png</SourceFile>
-  <SourceTime>2010-09-27T10:53:12-06:00</SourceTime>
+  <SourceTime>2017-05-26T07:44:43-06:00</SourceTime>
   <DestFile>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/bin/DesktopGL/Backgrounds/Layer1_2.xnb</DestFile>
-  <DestTime>2017-05-16T08:22:19-06:00</DestTime>
+  <DestTime>2017-05-26T07:50:28-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T08:06:24-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -85,6 +85,16 @@ namespace JoJo.Model
             get { return player1Ammo; }
         }
 
+		public void setPlayer1Ammo(int ammo1)
+		{
+            player1Ammo = ammo1;
+		}
+
+		public void setPlayer2Ammo(int ammo2)
+		{
+			player2Ammo = ammo2;
+		}
+
         public int Player2Ammo
         {
             get { return player2Ammo; }
@@ -534,7 +544,7 @@ namespace JoJo.Model
 
             if (keyboardState.IsKeyDown(Keys.RightShift) && player1Ammo != 0 )
             {
-                if(previousKeyboardState.IsKeyDown(Keys.RightShift))
+                if(previousKeyboardState.IsKeyDown(Keys.RightShift) && timeRemaining.Milliseconds %2== 1&& timeRemaining.Milliseconds % 3 == 1)
                 {
 					AddProjectile(player.Position + new Vector2(player.Width / 2, 0));
 					UpdateProjectiles();
@@ -546,7 +556,7 @@ namespace JoJo.Model
                
             }
 
-            if (keyboardState.IsKeyDown(Keys.NumPad0) && player1Ammo != 0 && previousKeyboardState.IsKeyUp(Keys.NumPad0))
+            if (keyboardState.IsKeyDown(Keys.NumPad0) && player1Ammo != 0 )
             {
                 
                 AddProjectile(player.Position + new Vector2(player.Width/2,0));
@@ -706,6 +716,9 @@ namespace JoJo.Model
 					{
 						
                         player.damageAndKilled();
+                        player2.playerKill();
+
+
 						projectiles[i].Active = false;
 					}
 				}
@@ -721,6 +734,7 @@ namespace JoJo.Model
             {
                 if(!projectiles[index].Active)
                 {
+                    
                     projectiles.RemoveAt(index);
                 }
             }
@@ -744,9 +758,11 @@ namespace JoJo.Model
         public void StartNewLife()
         {
             Player.Reset(start);
-            Player.setHealth(3);
+            Player.setHealth(1);
 			 Player2.Reset(start);
-            Player2.setHealth(3);
+            Player2.setHealth(1);
+            setPlayer2Ammo(0);
+            setPlayer1Ammo(0);
         }
 
         #endregion
