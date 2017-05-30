@@ -42,7 +42,6 @@
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Jump.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Run.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Fonts/Hud.spritefont</File>
-    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/Music.mp3</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/ExitReached.mp3</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/PlayerKilled.mp3</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/GemCollected.mp3</File>
@@ -55,5 +54,6 @@
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Jump2.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Die2.png</File>
     <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sprites/Player/Celebrate2.png</File>
+    <File>/Users/jwri6847/Documents/GameDev/JoJo/JoJo/Content/Sounds/Music.mp3</File>
   </SourceFiles>
 </SourceFileCollection>
