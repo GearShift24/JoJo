@@ -53,6 +53,9 @@ namespace JoJo.Model
 		List<Projectile> projectiles;
 
 
+		Texture2D projectileTexture2;
+		List<Projectile> projectiles2;
+
         public Player2 Player2
         {
             get { return player2; }
@@ -155,7 +158,8 @@ namespace JoJo.Model
             timeRemaining = TimeSpan.FromMinutes(2.0);
             projectiles = new List<Projectile>();
 			projectileTexture = Content.Load<Texture2D>("Sprites/Gem");
-      
+			projectiles2 = new List<Projectile>();
+			projectileTexture2 = Content.Load<Texture2D>("Sprites/Gem");
 
             LoadTiles(fileStream);
 
@@ -193,6 +197,7 @@ namespace JoJo.Model
 
            
             UpdateProjectiles();
+			UpdateProjectiles2();
             // Load the level and ensure all of the lines are the same length.
             int width;
             List<string> lines = new List<string>();
@@ -332,22 +337,53 @@ namespace JoJo.Model
 
         }
 
+		private void AddProjectile2(Vector2 position)
+		{
+			Projectile projectile2 = new Projectile();
+			projectile2.Initialize(graphics.Viewport, projectileTexture2, position);
 
-		private void UpdateProjectiles()
+
+			if (projectiles2.Count < player2Ammo)
+			{
+				projectiles2.Add(projectile2);
+
+			}
+
+		}
+
+
+        
+        private void UpdateProjectiles()
+        {
+            
+
+            // Update the Projectiles
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+            {
+                projectiles[i].Update(Player.IsFacingLeft);
+
+                if (projectiles[i].Active == false)
+                {
+                    projectiles.RemoveAt(i);
+                }
+            }
+        }
+
+
+
+
+		private void UpdateProjectiles2()
 		{
             
 
-
-          
-
 			// Update the Projectiles
-			for (int i = projectiles.Count - 1; i >= 0; i--)
+			for (int i = projectiles2.Count - 1; i >= 0; i--)
 			{
-				projectiles[i].Update(Player.IsFacingLeft);
+				projectiles2[i].Update(Player2.IsFacingLeft);
 
-				if (projectiles[i].Active == false)
+				if (projectiles2[i].Active == false)
 				{
-					projectiles.RemoveAt(i);
+					projectiles2.RemoveAt(i);
 				}
 			}
 		}
@@ -517,6 +553,7 @@ namespace JoJo.Model
                     OnPlayerKilled(null);
                 UpdateCollision();
                 UpdateProjectiles();
+				UpdateProjectiles2();
                 UpdateEnemies(gameTime);
 
                 // The player has reached the exit if they are standing on the ground and
@@ -569,6 +606,33 @@ namespace JoJo.Model
                 UpdateProjectiles();
                 player1Ammo--;
             }
+
+
+
+
+
+
+			if (keyboardState.IsKeyDown(Keys.LeftShift) && player2Ammo != 0)
+			{
+				if (previousKeyboardState.IsKeyDown(Keys.LeftShift) && timeRemaining.Milliseconds % 2 == 1 && timeRemaining.Milliseconds % 3 == 1)
+				{
+					AddProjectile2(player2.Position + new Vector2(player2.Width / 2, 0));
+					UpdateProjectiles2();
+					player2Ammo--;
+				}
+
+
+
+
+			}
+
+            if (keyboardState.IsKeyDown(Keys.F) && player2Ammo != 0)
+			{
+
+				AddProjectile2(player2.Position + new Vector2(player2.Width / 2, 0));
+				UpdateProjectiles2();
+				player2Ammo--;
+			}
 
 
         }
@@ -694,6 +758,7 @@ namespace JoJo.Model
             Rectangle rectangle1;
             Rectangle rectangle2;
             Rectangle player1ProjectileBox;
+			Rectangle player2ProjectileBox;
           
 
             // Only create the rectangle once for the player
@@ -732,6 +797,37 @@ namespace JoJo.Model
 					}
 				}
 			}
+
+
+
+
+
+
+
+            for (int i = 0; i < projectiles2.Count; i++)
+            {
+
+                {
+                    // Create the rectangles we need to determine if we collided with each other
+                    player2ProjectileBox = new Rectangle((int)projectiles2[i].Position.X -
+                    projectiles2[i].Width / 2, (int)projectiles2[i].Position.Y -
+                    projectiles2[i].Height / 2, projectiles2[i].Width, projectiles2[i].Height);
+
+
+                    // Determine if the two objects collided with each other
+                    if (rectangle1.Intersects(player2ProjectileBox))
+                    {
+                        
+                        player.damageAndKilled();
+                        player.playerKill();
+
+                        score += 8;
+
+                        projectiles2[i].Active = false;
+                    }
+                }
+            }
+
         }
 
 
@@ -741,15 +837,33 @@ namespace JoJo.Model
 
             for (int index = projectiles.Count - 1; index >= 0; index--)
             {
-                if(!projectiles[index].Active)
+                if (!projectiles[index].Active)
                 {
-                    
+
                     projectiles.RemoveAt(index);
                 }
             }
 
+        }
+
+
+
+        private void UpdateProjectile2(GameTime gameTime)
+        {
+
+            for (int index = projectiles2.Count - 1; index >= 0; index--)
+            {
+                if (!projectiles2[index].Active)
+                {
+
+                    projectiles2.RemoveAt(index);
+                }
+            }
 
         }
+
+
+
         /// <summary>
         /// Called when the player reaches the level's exit.
         /// </summary>
@@ -804,6 +918,12 @@ namespace JoJo.Model
 			{
 				projectiles[i].Draw(spriteBatch);
 			}
+
+
+            for (int i = 0; i < projectiles2.Count; i++)
+            {
+                projectiles2[i].Draw(spriteBatch);
+            }
         }
 
         /// <summary>

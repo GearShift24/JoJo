@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{34BE5076-CA94-4116-8F0A-87CB2B530845}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="JoJo/Model/Level.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JoJo/Model/Projectile2.cs">
     <Files>
-      <File FileName="JoJo/Model/Level.cs" Line="493" Column="54" />
+      <File FileName="JoJo/Model/Level.cs" Line="923" Column="57" />
+      <File FileName="JoJo/Model/Projectile2.cs" Line="79" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
