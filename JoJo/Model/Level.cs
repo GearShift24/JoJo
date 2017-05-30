@@ -676,6 +676,7 @@ namespace JoJo.Model
                 {
 					playerKilled = Content.Load<SoundEffect>("Sounds/MonstersKilled");
                     playerKilled.Play();
+                    score -= 5;
                     OnPlayerKilled(enemy);
 				
                 }
@@ -684,7 +685,9 @@ namespace JoJo.Model
                 {
 					playerKilled = Content.Load<SoundEffect>("Sounds/MonstersKilled");
 					playerKilled.Play();
+                    score -= 5;
                     OnPlayerKilled(enemy);
+
 				
                 }
             }
@@ -827,7 +830,7 @@ namespace JoJo.Model
                         player.damageAndKilled();
                         player.playerKill();
 
-                        score += 8;
+                        score2 += 8;
 
                         projectiles2[i].Active = false;
                     }
