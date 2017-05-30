@@ -51,6 +51,7 @@
     <Compile Include="Model\RectangleExtensions.cs" />
     <Compile Include="Model\Player2.cs" />
     <Compile Include="Model\Projectile.cs" />
+    <Compile Include="Model\Projectile2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />
