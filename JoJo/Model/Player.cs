@@ -37,6 +37,8 @@ namespace JoJo.Model
         private SoundEffect killedSound;
         private SoundEffect jumpSound;
         private SoundEffect fallSound;
+	
+		private SoundEffect playerKilled;
 
         public Level Level
         {
@@ -466,6 +468,8 @@ namespace JoJo.Model
         public void playerKill()
         {
 			sprite.PlayAnimation(dieAnimation);
+			playerKilled = Level.Content.Load<SoundEffect>("Sounds/MonstersKilled");
+            playerKilled.Play();
         }
 
         public void OnKilled(Enemy killedBy)
@@ -486,6 +490,7 @@ namespace JoJo.Model
         public void OnReachedExit()
         {
             sprite.PlayAnimation(celebrateAnimation);
+		
         }
 
         /// <summary>

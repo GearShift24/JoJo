@@ -35,7 +35,7 @@ namespace JoJo.Model
 		private SoundEffect killedSound;
 		private SoundEffect jumpSound;
 		private SoundEffect fallSound;
-
+		private SoundEffect playerKilled;
         int health2 = 1;
 
 		public Level Level
@@ -456,6 +456,8 @@ namespace JoJo.Model
 		public void playerKill()
 		{
 			sprite.PlayAnimation(dieAnimation);
+            playerKilled = Level.Content.Load<SoundEffect>("Sounds/MonstersKilled");
+            playerKilled.Play();
 		}
 
 		public void damageAndKilled()
@@ -465,7 +467,7 @@ namespace JoJo.Model
 			if (health2 == 0)
 			{
 				isAlive = false;
-
+				playerKilled = Level.Content.Load<SoundEffect>("Sounds/MonstersKilled");
 			}
 
 		}

@@ -29,7 +29,6 @@
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/GemCollected.ogg
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/GemCollected.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/MonsterKilled.ogg
-/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/MonsterKilled.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/Music.ogg
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/Music.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/PlayerFall.ogg
@@ -79,3 +78,5 @@
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Idle2.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Jump2.xnb
 /Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sprites/Player/Run2.xnb
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/MonstersKilled.ogg
+/Users/jwri6847/Documents/GameDev/JoJo/JoJo/bin/Debug/Content/Sounds/MonstersKilled.xnb

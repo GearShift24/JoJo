@@ -109,7 +109,7 @@ namespace JoJo.Model
 		int score2;
         int player1Ammo;
         int player2Ammo;
-
+        private SoundEffect playerKilled;
         public bool ReachedExit
         {
             get { return reachedExit; }
@@ -674,12 +674,18 @@ namespace JoJo.Model
                 // Touching an enemy instantly kills the player
                 if (enemy.BoundingRectangle.Intersects(Player.BoundingRectangle))
                 {
+					playerKilled = Content.Load<SoundEffect>("Sounds/MonstersKilled");
+                    playerKilled.Play();
                     OnPlayerKilled(enemy);
+				
                 }
 
                 if (enemy.BoundingRectangle.Intersects(Player2.BoundingRectangle))
                 {
+					playerKilled = Content.Load<SoundEffect>("Sounds/MonstersKilled");
+					playerKilled.Play();
                     OnPlayerKilled(enemy);
+				
                 }
             }
         }
@@ -692,7 +698,7 @@ namespace JoJo.Model
         /// <param name="collectedBy">The player who collected this gem.</param>
         private void OnGemCollected(Gem gem, Player collectedBy)
         {
-
+			playerKilled = Content.Load<SoundEffect>("Sounds/MonstersKilled");
 
             score += Gem.PointValue;
 

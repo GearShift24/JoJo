@@ -130,12 +130,6 @@
 /processorParam:TextureFormat=Color
 /build:Overlays/you_win.png
 
-#begin Sounds/MonsterKilled.wma
-/importer:WmaImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/MonsterKilled.wma
-
 #begin Sounds/PlayerFall.wma
 /importer:WmaImporter
 /processor:SoundEffectProcessor
@@ -467,12 +461,6 @@
 /processorParam:Quality=Best
 /build:Sounds/PlayerKilled.mp3
 
-#begin Sounds/GemCollected.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/GemCollected.mp3
-
 #begin Sounds/PlayerJump.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -580,4 +568,16 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Sounds/Music.mp3
+
+#begin Sounds/MonstersKilled.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/MonstersKilled.mp3
+
+#begin Sounds/GemCollected.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/GemCollected.mp3
 
