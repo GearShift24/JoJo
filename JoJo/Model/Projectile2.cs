@@ -86,8 +86,10 @@ namespace JoJo.Model
 
 
 			// Deactivate the bullet if it goes out of screen
-			if (Position.X + Texture.Width / 2 > viewport.Width)
+			if (Position.X  > Width * Tile.Width)
+			{
 				Active = false;
+			}
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{

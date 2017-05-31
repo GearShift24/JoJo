@@ -360,7 +360,12 @@ namespace JoJo.Model
             // Update the Projectiles
             for (int i = projectiles.Count - 1; i >= 0; i--)
             {
+                    
                 projectiles[i].Update(Player.IsFacingLeft);
+
+
+			
+
 
                 if (projectiles[i].Active == false)
                 {
@@ -375,11 +380,14 @@ namespace JoJo.Model
 		private void UpdateProjectiles2()
 		{
             
-
+                
 			// Update the Projectiles
 			for (int i = projectiles2.Count - 1; i >= 0; i--)
-			{
+			{   
+                
 				projectiles2[i].Update(Player2.IsFacingLeft);
+
+
 
 				if (projectiles2[i].Active == false)
 				{
@@ -685,7 +693,7 @@ namespace JoJo.Model
                 {
 					playerKilled = Content.Load<SoundEffect>("Sounds/MonstersKilled");
 					playerKilled.Play();
-                    score -= 5;
+                    score2 -= 5;
                     OnPlayerKilled(enemy);
 
 				
